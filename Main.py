@@ -1,6 +1,5 @@
-from WindowAndScreenStuff.ImageGetter import getImage
 from WindowAndScreenStuff.Window import Window
-from updatedGraphics import Image, Point, Text, color_rgb
+from WindowAndScreenStuff.StartScreen import StartScreen
 
 GAME_TITLE = "Wildberry"
 WIDTH = 1200
@@ -13,14 +12,7 @@ class Game:
         self._wildberryWindow = Window(GAME_TITLE,WIDTH,HEIGHT)
 
     def run(self):
-        image = Image(Point(600,400),getImage("StartScreen.gif"))
-        startText = Text(Point(600,600),"Press Any Key To Start")
-        startText.setFace("arial")
-        startText.setSize(36)
-        startText.setStyle("normal")
-        startText.setTextColor(color_rgb(255,255,255))
-        image.draw(self.getGameWindow())
-        startText.draw(self.getGameWindow())
+        startScreen = StartScreen(self.getGameWindow())
         self.getGameWindow().getKey()
 
 
