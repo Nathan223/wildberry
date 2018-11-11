@@ -15,52 +15,27 @@ class GameScreen:
         self.startGame(window)
         self.countDown = Text(Point(window.getWidth() / 2, window.getHeight() / 2), '')
         self.countdown(window)
+        self.plyJumpRender = Image(Point(300, 50), "ImagesAndSprites/Apple.gif")
+        self.plyJumpRender.draw(window)
 
+        self.plyJumpRender2 = Image(Point(900, 50), "ImagesAndSprites/Apple.gif")
+        self.plyJumpRender2.draw(window)
+        # plyJumpRender2.move(150, 0)
+
+        self.worldRenderer = Image(Point(800, 3), "ImagesAndSprites/blue.gif")
+        self.worldRenderer.draw(window)
+        self.worldRenderer.move(-200, 400)
+
+        # Hitbox defines as
+        # Obj, width, height, weight, pos, ignored
+        self.plyJump = hitbox(self.plyJumpRender, 1)
+        self.plyJump2 = hitbox(self.plyJumpRender2, 1)
+        self.platform = hitbox(self.worldRenderer, 0)
         while True:
             if self.checkExit(window.checkKey()):
                 window.close()
-            self.update()
+            self.update(window)
 
-            # This is just the objects
-            plyJumpRender = Image(Point(300, 50), "ImagesAndSprites/Apple.gif")
-            plyJumpRender.draw(window)
-
-            plyJumpRender2 = Image(Point(900, 50), "ImagesAndSprites/Apple.gif")
-            plyJumpRender2.draw(window)
-            # plyJumpRender2.move(150, 0)
-
-            worldRenderer = Image(Point(800, 3), "ImagesAndSprites/blue.gif")
-            worldRenderer.draw(window)
-            worldRenderer.move(-200, 400)
-
-            # Hitbox defines as
-            # Obj, width, height, weight, pos, ignored
-            plyJump = hitbox(plyJumpRender, 1)
-            plyJump2 = hitbox(plyJumpRender2, 1)
-            platform = hitbox(worldRenderer, 0)
-
-            while True:
-                # Controls
-                controls = window.checkKeys()
-                if "w" in controls and plyJump.inAir == False:
-                    plyJump.addYForce(20)
-                if "a" in controls:
-                    plyJump.addXForce(5)
-                if "d" in controls:
-                    plyJump.addXForce(-5)
-                if "Up" in controls and plyJump2.inAir == False:
-                    plyJump2.addYForce(20)
-                if "Left" in controls:
-                    plyJump2.addXForce(5)
-                if "Right" in controls:
-                    plyJump2.addXForce(-5)
-
-                # Physics calculations
-                plyJump.calculate()  # Needed to actual update the position of the hitbox
-                plyJump2.calculate()
-                platform.calculate()
-
-                time.sleep(0.0083)  # Magic sleep number from jamie
 
     def checkExit(self, key):
         if key == 'Escape':
@@ -70,9 +45,29 @@ class GameScreen:
     def checkLose(self):
         pass
 
-    def update(self):
+    def update(self,window):
         self.p1Text.setText(str(self.p1.health))
         self.p2Text.setText(str(self.p2.health))
+        controls = window.checkKeys()
+        if "w" in controls and self.plyJump.inAir == False:
+            self.plyJump.addYForce(20)
+        if "a" in controls:
+            self.plyJump.addXForce(5)
+        if "d" in controls:
+            self.plyJump.addXForce(-5)
+        if "Up" in controls and self.plyJump2.inAir == False:
+            self.plyJump2.addYForce(20)
+        if "Left" in controls:
+            self.plyJump2.addXForce(5)
+        if "Right" in controls:
+            self.plyJump2.addXForce(-5)
+
+        # Physics calculations
+        self.plyJump.calculate()  # Needed to actual update the position of the hitbox
+        self.plyJump2.calculate()
+        self.platform.calculate()
+
+        time.sleep(0)  # Magic sleep number from jamie
 
     def createHealthBars(self, window):
         self.p1Text = Text(Point(50,50), str(self.p1.health))
