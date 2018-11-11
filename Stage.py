@@ -1,4 +1,4 @@
-from updatedGraphics import Image,Point,Rectangle
+from graphics import Image,Point,Rectangle
 from physics2 import *
 
 class Stage(object):
