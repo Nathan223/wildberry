@@ -13,8 +13,7 @@ class GameScreen:
         self.startGame(window)
         self.countDown = Text(Point(window.getWidth() / 2, window.getHeight() / 2), Text)
         self.countdown(window)
-        while True:
-            pass
+
 
     def createHealthBars(self, window):
         pass

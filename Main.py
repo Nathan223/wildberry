@@ -2,6 +2,7 @@ from WindowAndScreenStuff.Window import Window
 from WindowAndScreenStuff.StartScreen import StartScreen
 from WindowAndScreenStuff.GameScreen import GameScreen
 from Characters.Apple import Apple
+import threading
 
 GAME_TITLE = "Wildberry"
 WIDTH = 1200
@@ -19,10 +20,10 @@ class Game:
         p1 = Apple()
         p2 = Apple()
         GameScreen(self.getGameWindow(),p1,p2)
-
-
-import threading
-
+        print("hello")
+        while True:
+            if self.getGameWindow().checkKey() == 'Escape':
+                self.getGameWindow().close()
 
 class MusicPlayer(threading.Thread):
 
