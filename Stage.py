@@ -1,5 +1,5 @@
 from updatedGraphics import Image,Point,Rectangle
-
+from physics2 import *
 
 class Stage(object):
     def __init__(self, window):
@@ -12,6 +12,8 @@ class Stage(object):
         stage = Rectangle(Point(200,650),Point(1000,700))
         stage.setFill("Blue")
         stage.draw(window)
+        self.hb = hitbox(800, 50, 0)
+        self.hb.position = [stage.getCenter().getX(), stage.getCenter().getY()]
         self.pos1 = Point(400,700)
         self.pos2 = Point(800,700)
 

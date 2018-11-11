@@ -139,7 +139,7 @@ def setPos(obj, x, y):
     obj.move(x - currentX, y - currentY)
 
 
-"""# Example documentation
+
 def main():
     window = GraphWin("Jump test", 640, 480)
     window.setBackground("white")
@@ -184,4 +184,4 @@ def main():
         sleep(0.0083) # Magic sleep number from jamie
 
 main()
-"""
+
