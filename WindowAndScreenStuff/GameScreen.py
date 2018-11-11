@@ -9,7 +9,7 @@ import time
 class GameScreen:
     def __init__(self, window, player1, player2):
         self.stage = Stage(window)
-        Stage.regStage(self.stage, window)
+        self.stage.regStage(window)
         self.p1 = Player(player1, None)
         self.p2 = Player(player2, None)
         self.p1Point = Point(self.stage.getPos1().getX(), self.stage.getPos1().getY() - (89 + 6))
@@ -18,6 +18,9 @@ class GameScreen:
         self.p2Pic = Image(self.p2Point,self.p2.getImageFile())
         self.p1.setImage(self.p1Pic)
         self.p2.setImage(self.p2Pic)
+        self.p1HB = hitbox(self.p1Pic,1)
+        self.p2HB = hitbox(self.p2Pic,1)
+        self.stage.regStageCreateHB()
         #Stage.createStage()
         self.createHealthBars(window)
         self.startGame(window)
@@ -56,6 +59,7 @@ class GameScreen:
             self.countDown.setText(str(i))
             if i==2:
                 self.p1Pic.draw(window)
+
             if i==1:
                 self.p2Pic.draw(window)
             time.sleep(1)

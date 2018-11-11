@@ -24,7 +24,7 @@ class Stage(object):
     def getPos2(self):
         return self.pos2
 
-    def plat1CreateHB(self):
+    def regStageCreateHB(self):
         self.hb = hitbox(self.platform1,0)
 
     def getHB(self):
