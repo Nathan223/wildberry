@@ -47,7 +47,7 @@ class GameScreen:
                     plyJump.addXForce(5)
                 if "d" in controls:
                     plyJump.addXForce(-5)
-                if "e" in controls: #and abs(plyJump.position[0] - plyJump2.position[0]) < 50 and abs(plyJump.position[1] - plyJump2.position[1]) < 50 :
+                if "e" in controls and abs(plyJump.position[0] - plyJump2.position[0]) < 120 and abs(plyJump.position[1] - plyJump2.position[1]) < 120:
                    self.p2.health -= 5
                    self.p2Text.setText(str(self.p2.health))
                 if "Up" in controls and plyJump2.inAir == False:
@@ -56,9 +56,11 @@ class GameScreen:
                     plyJump2.addXForce(5)
                 if "Right" in controls:
                     plyJump2.addXForce(-5)
-                if "Insert" in controls: #and abs(plyJump.position[0] - plyJump2.position[0]) < 50 and abs(plyJump.position[1] - plyJump2.position[1]) < 50 :
+                if "Insert" in controls and abs(plyJump.position[0] - plyJump2.position[0]) < 120 and abs(plyJump.position[1] - plyJump2.position[1]) < 120e:
                     self.p1.health -= 5
                     self.p1Text.setText(str(self.p1.health))
+
+                #if self.p1.health <= 0
 
                 # Physics calculations
                 plyJump.calculate()  # Needed to actual update the position of the hitbox
