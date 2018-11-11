@@ -20,10 +20,6 @@ class Game:
         p1 = Apple()
         p2 = Apple()
         GameScreen(self.getGameWindow(),p1,p2)
-        print("hello")
-        while True:
-            if self.getGameWindow().checkKey() == 'Escape':
-                self.getGameWindow().close()
 
 class MusicPlayer(threading.Thread):
 
