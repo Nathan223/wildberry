@@ -20,6 +20,7 @@ class Game:
         p1 = "Apple"
         p2 = "Apple"
         GameScreen(self.getGameWindow(),p1,p2)
+        self.getGameWindow().close()
 
 class MusicPlayer(threading.Thread):
 
@@ -28,7 +29,6 @@ class MusicPlayer(threading.Thread):
 
     def run(self):
         exec(open("Music.py").read())
-
 
 if __name__ == "__main__":
     m = MusicPlayer()
