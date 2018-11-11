@@ -1,9 +1,8 @@
 
-class Stage(object):
+class Stage:
 
-    def __init__(self):
-        pass
+    def plainStage(self):
 
     def getStages(self):
-        pass
+        return plainStage
 
