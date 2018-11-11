@@ -1,4 +1,4 @@
-from physics import hitbox
+from hitbox import hitbox
 from graphics import Point, Image
 
 

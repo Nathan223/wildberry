@@ -1,6 +1,6 @@
 from Stage import Stage
 from graphics import Text,Image,Point
-from physics2 import hitbox
+from hitbox import hitbox
 import time
 
 class GameScreen:
@@ -61,11 +61,11 @@ class GameScreen:
     def loadP1(self, window):
         p1Point = Point(self.stage.getPos1().getX(),self.stage.getPos1().getY()-(89+6))
         self.p1Pic = Image(p1Point,self.p1.getImage())
-        self.hb1 = hitbox()
+        #self.hb1 = hitbox()
         self.p1Pic.draw(window)
 
     def loadP2(self, window):
         p2Point = Point(self.stage.getPos2().getX(), self.stage.getPos2().getY() - (89 + 6))
         self.p2Pic = Image(p2Point, self.p2.getImage())
-        self.hb2 = hitbox()
+        #self.hb2 = hitbox()
         self.p2Pic.draw(window)
