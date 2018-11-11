@@ -4,6 +4,7 @@ from Fruit import Fruit
 class Apple(Fruit):
     def __init__(self):
         Fruit.__init__(self)
+        self.image = "ImagesAndSprites/Apple.gif"
 
     def quickAttack(self):
         pass
@@ -16,3 +17,6 @@ class Apple(Fruit):
 
     def ultimate(self):
         pass
+
+    def getImage(self):
+        return self.image

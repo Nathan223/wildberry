@@ -1,6 +1,7 @@
 from WindowAndScreenStuff.Window import Window
 from WindowAndScreenStuff.StartScreen import StartScreen
 from WindowAndScreenStuff.GameScreen import GameScreen
+from Characters.Apple import Apple
 
 GAME_TITLE = "Wildberry"
 WIDTH = 1200
@@ -16,8 +17,10 @@ class Game:
 
     def run(self):
         StartScreen(self.getGameWindow())
+        p1 = Apple()
+        p2 = Apple()
         while(True):
-            GameScreen(self.getGameWindow())
+            GameScreen(self.getGameWindow(),p1,p2)
             break
 
 
