@@ -1,5 +1,5 @@
 from Stage import Stage
-from updatedGraphics import Text,Image,Point
+from graphics import Text,Image,Point
 import time
 
 class GameScreen:

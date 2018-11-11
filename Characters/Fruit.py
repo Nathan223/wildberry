@@ -1,6 +1,5 @@
 from physics import hitbox
-from updatedGraphics import Point
-from updatedGraphics import Image
+from graphics import Point, Image
 
 
 class Fruit(object):

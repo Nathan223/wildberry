@@ -1,4 +1,4 @@
-from updatedGraphics import *
+from graphics import *
 from time import sleep
 
 gravity = -1

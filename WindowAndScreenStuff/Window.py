@@ -1,4 +1,4 @@
-from updatedGraphics import GraphWin
+from graphics import GraphWin
 
 
 class Window:

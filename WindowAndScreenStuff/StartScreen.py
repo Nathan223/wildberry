@@ -1,4 +1,4 @@
-from updatedGraphics import Image, Text, Point, color_rgb
+from graphics import Image, Text, Point, color_rgb
 
 
 class StartScreen:
