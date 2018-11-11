@@ -1,5 +1,6 @@
 from WindowAndScreenStuff.Window import Window
 from WindowAndScreenStuff.StartScreen import StartScreen
+from WindowAndScreenStuff.GameScreen import GameScreen
 
 GAME_TITLE = "Wildberry"
 WIDTH = 1200
@@ -16,7 +17,7 @@ class Game:
     def run(self):
         StartScreen(self.getGameWindow())
         while(True):
-            break
+            GameScreen(self.getGameWindow())
 
 
 
