@@ -1,11 +1,14 @@
 from Stage import Stage
-from graphics import Text,Image,Point
+from updatedGraphics import Text,Image,Point
+from physics2 import hitbox
 import time
 
 class GameScreen:
     def __init__(self, window, player1, player2):
         self.p1 = player1
         self.p2 = player2
+        self.p1Pic = None
+        self.p2Pic = None
         self.stage = Stage(window)
         #Stage.createStage()
         Stage.regStage(self.stage, window)
@@ -13,7 +16,20 @@ class GameScreen:
         self.startGame(window)
         self.countDown = Text(Point(window.getWidth() / 2, window.getHeight() / 2), Text)
         self.countdown(window)
+        while True:
+            if self.checkExit(window.checkKey()):
+                window.close()
 
+    def checkExit(self, key):
+        if key == 'Escape':
+            return True
+        return False
+
+    def checkLose(self):
+        pass
+
+    def update(self):
+        pass
 
     def createHealthBars(self, window):
         pass
@@ -42,11 +58,10 @@ class GameScreen:
 
     def loadP1(self, window):
         p1Point = Point(self.stage.getPos1().getX(),self.stage.getPos1().getY()-(89+6))
-        p1Pic = Image(p1Point,self.p1.getImage())
-        p1Pic.draw(window)
+        self.p1Pic = Image(p1Point,self.p1.getImage())
+        self.p1Pic.draw(window)
 
     def loadP2(self, window):
         p1Point = Point(self.stage.getPos2().getX(), self.stage.getPos2().getY() - (89 + 6))
-        p1Pic = Image(p1Point, self.p2.getImage())
-        p1Pic.draw(window)
-
+        self.p2Pic = Image(p1Point, self.p2.getImage())
+        self.p2Pic.draw(window)
