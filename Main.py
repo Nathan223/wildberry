@@ -6,7 +6,6 @@ WIDTH = 1200
 HEIGHT = 800
 
 
-
 class Game:
     def __init__(self):
         self._wildberryWindow = Window(GAME_TITLE,WIDTH,HEIGHT)
