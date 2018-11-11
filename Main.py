@@ -3,8 +3,8 @@ from Window import Window
 from updatedGraphics import Image, Point
 
 GAME_TITLE = "Wildberry"
-WIDTH = 1440
-HEIGHT = 775
+WIDTH = 1200
+HEIGHT = 800
 
 
 
