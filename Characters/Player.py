@@ -4,6 +4,7 @@ from physics2 import hitbox
 class Player(object):
     def __init__(self,fruit,image):
         self.lives = 3
+        self.health = 100
         if(fruit == "Apple"):
             self.fruit = Apple(image)
             self.imageFile = "ImagesAndSprites/Apple.gif"
