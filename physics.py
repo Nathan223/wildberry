@@ -162,5 +162,4 @@ def main():
         #sleep(0.0083)
         sleep(0.4)
 
-main()
 #"""
