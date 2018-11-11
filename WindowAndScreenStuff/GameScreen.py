@@ -1,14 +1,13 @@
-from Stages import getStages
-from random import randint
+from Stage import Stage
 
 
 class GameScreen:
     def __init__(self,window):
-        #ran = randint(0,getStages().length)
-        getStages(window)
+        stage = Stage(window)
+        #Stage.createStage()
+        Stage.regStage()
         self.createHealthBars(window)
+        self.startGame(window)
 
     def createHealthBars(self,window):
         pass
-
-
