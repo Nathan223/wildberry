@@ -181,18 +181,18 @@ class hitbox: # Obj, width, height, weight, pos, ignored
 
 # Example documentation
 def main():
-    window = GraphWin("Jump test", 640, 480)
+    window = GraphWin("Jump test", 1280, 720)
     window.setBackground("white")
 
     # This is just the objects
-    plyJumpRender = Image(Point(50, 50), "ImagesAndSprites/Apple.gif")
+    plyJumpRender = Image(Point(300, 50), "ImagesAndSprites/Apple.gif")
     plyJumpRender.draw(window)
 
-    plyJumpRender2 = Image(Point(50, 50), "ImagesAndSprites/Apple.gif")
+    plyJumpRender2 = Image(Point(900, 50), "ImagesAndSprites/Apple.gif")
     plyJumpRender2.draw(window)
-    plyJumpRender2.move(150, 0)
+    # plyJumpRender2.move(150, 0)
 
-    worldRenderer = Image(Point(500, 3), "ImagesAndSprites/blue.gif")
+    worldRenderer = Image(Point(800, 3), "ImagesAndSprites/blue.gif")
     worldRenderer.draw(window)
     worldRenderer.move(-200, 400)
 
