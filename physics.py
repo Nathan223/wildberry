@@ -1,20 +1,24 @@
 from updatedGraphics import *
 from time import sleep
 
-gravity = -2
-objResistance = 1
+gravity = -1
 hitboxes = []
+mvtSpeed = 3
 
 class hitbox:
-    def __init__(self, width, height, weight):
+    def __init__(self, width, height, static):
         global hitboxes
-        self.velocity = [0, 0] # X, Y
-        self.position = [0, 0] # X, Y
+        self.yVel = 0 # Y
+        self.xVel = 0 # X
+        self.xPos = 0 # X
+        self.yPos = 0 # Y
+
+        self.static = static
+
         self.width = width
         self.height = height
-        self.weight = weight
-        self.hitbox = [self.position[0] - self.width / 2, self.position[0] + self.width / 2,
-                        self.position[1] + self.height, self.position[1] - self.height]
+        self.hitbox = [self.xPos - self.width / 2, self.xPos + self.width / 2,
+                        self.yPos + self.height, self.yPos - self.height]
 
         hitboxes.append(self.hitbox)
         self.hitboxID = len(hitboxes) - 1
@@ -25,8 +29,8 @@ class hitbox:
         global hitboxes
 
         # Update the hitbox
-        self.hitbox = [self.position[0] - self.width / 2, self.position[0] + self.width / 2,
-                        self.position[1] + self.height, self.position[1] - self.height]
+        self.hitbox = [self.xPos - self.width / 2, self.xPos + self.width / 2,
+                        self.yPos + self.height, self.yPos - self.height]
         hitboxes[self.hitboxID] = self.hitbox
 
         collidedLeft = False
@@ -34,55 +38,70 @@ class hitbox:
         collidedUp = False
         collidedDown = False
 
+        #projectedVelocity = (gravity * self.weight) * (self.velocity[1] + 1) * -1
+        if self.static == 0:
+            self.yVel = 0
+
         i = 0
         for box in hitboxes:
-            print(box)
             # Make sure it doesnt collide with its own hitbox
             if i != self.hitboxID:
                 # X calculations
-                if self.position[0] + self.width > box[0]:
+                if self.xPos + self.width > box[0]:
                     collidedLeft = True
-                if self.position[0] + self.width < box[1]:
+                if self.xPos + self.width < box[1]:
                     collidedRight = True
                 # Y calculations
-                if self.position[1] + self.height < box[2]:
+                if self.yPos + self.height < box[2]:
                     collidedUp = True
-                if self.position[1] + self.height > box[3]:
+                if self.yPos + self.height > box[3]:
                     collidedDown = True
 
             i += 1
 
         # Only move if possible
         if (collidedLeft == False or collidedRight == False) or (collidedUp == False or collidedDown == False):
-            self.position[0] -= self.velocity[0]
-            self.position[1] -= ((gravity * self.weight) + self.velocity[1])
+            self.xPos -= self.yVel
+            self.yVel += self.yVel
+
+        #print("Object ID", self.hitboxID, ": ", self.velocity)
 
         # Move back if you can
         # X
-        if self.velocity[0] > 0 and collidedLeft == True:
-            self.position[0] -= self.velocity[0]
-        if self.velocity[0] < 0 and collidedRight == True:
-            self.position[0] -= self.velocity[0]
+        if self.xVel > 0 and collidedLeft == True:
+            self.xPos -= self.xVel
+        if self.xVel < 0 and collidedRight == True:
+            self.xPos -= self.xVel
+        """
         # Y
         if self.velocity[1] > 0 and collidedDown == True:
             self.position[1] -= ((gravity * self.weight) + self.velocity[1])
         if self.velocity[1] < 0 and collidedUp == True:
             self.position[1] -= ((gravity * self.weight) + self.velocity[1])
+        """
+        if self.yVel > 0 and collidedDown == True:
+            self.yVel -= 0#(gravity * self.weight) * (yVel + 1)
+        if self.yVel < 0 and collidedUp == True:
+            self.yVel -= 0#(gravity * self.weight) * (yVel + 1)
 
-        # Slow down the velocity at every physics calculation
-        if self.velocity[0] > 0:
-            self.velocity[0] -= objResistance
+        if self.yVel < hitboxes[1][3]:
+            self.yPos -= self.yVel
         else:
-            self.velocity[0] = 0
+            self.yPos = hitboxes[1][3] - self.height
+            self.yVel = 0
 
-        if self.velocity[1] > 0:
-            self.velocity[1] -= objResistance
-        else:
-            self.velocity[1] = 0
+        self.move()
 
-    def setForce(self, dir): # The first index is the left right force and the second index is up down force
-        self.velocity[0] = dir[0]
-        self.velocity[1] = dir[1]
+    def move(self):
+        self.xPos -= self.xVel
+        self.yPos -= self.yVel
+    # def setForce(self, dir): # The first index is the left right force and the second index is up down force
+    #     xVel = dir[0]
+    #     yVel = dir[1]
+    #
+    # def addForce(self, dir):
+    #     xVel += dir[0]
+    #     yVel += dir[1]
 
     def getHitbox(self):
         return self.hitbox
@@ -111,30 +130,37 @@ def main():
     worldRenderer.setFill("red")
     worldRenderer.draw(window)
 
-    platform.position = [640/2, 480/2]
+    platform.xPos = 640/2
+    platform.yPos = 480/2
 
-    plyJump.position = [220, 5]
-    plyJump.setForce([2, 0])
+    plyJump.xPos = 220
+    plyJump.yPos = 5
+    #plyJump.setForce([2, 0])
 
     while True:
         # Controls
         controls = window.checkKey()
-        if controls == "w":
-            plyJump.setForce([0, 15])
+        if controls == "w" and plyJump.yVel == 0:
+            plyJump.yVel = mvtSpeed
         if controls == "a":
-            plyJump.setForce([5, 0])
+            plyJump.xVel = -1 * mvtSpeed
         if controls == "d":
-            plyJump.setForce([-5, 0])
+            plyJump.xVel = mvtSpeed
 
         # Physics calculations
         plyJump.calculate()
         platform.calculate()
 
-        # Rendering
-        setPos(plyJumpRender, plyJump.position[0], plyJump.position[1])
-        setPos(worldRenderer, platform.position[0], platform.position[1])
+        plyJump.yVel += gravity
 
-        sleep(0.0083)
+        print(plyJump.yPos)
+
+        # Rendering
+        setPos(plyJumpRender, plyJump.xPos, plyJump.yPos)
+        setPos(worldRenderer, platform.xPos, platform.yPos)
+
+        #sleep(0.0083)
+        sleep(0.4)
 
 main()
 #"""
