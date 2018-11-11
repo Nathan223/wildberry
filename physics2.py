@@ -225,4 +225,4 @@ def main():
 
         sleep(0.0083) # Magic sleep number from jamie
 
-main()
+# main()

@@ -1,4 +1,4 @@
-    from Characters.Fruit import Fruit
+from Characters.Fruit import Fruit
 from graphics import Point
 from physics2 import hitbox
 
