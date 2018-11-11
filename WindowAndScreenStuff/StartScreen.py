@@ -8,6 +8,20 @@ class StartScreen:
         self.text.setFace("arial")
         self.text.setSize(36)
         self.text.setStyle("normal")
-        self.text.setTextColor(color_rgb(255, 255, 255))
+        self.text.setTextColor(color_rgb(0, 0, 0))
         self.image.draw(window)
         self.text.draw(window)
+        self.run(window)
+
+    def run(self,window):
+        r=1
+        b=2
+        g=3
+        while(window.checkKey()==''):
+            self.text.setTextColor(color_rgb(r,b,g))
+            r+=1
+            b+=2
+            g+=3
+            r=r%256
+            b=b%256
+            g=g%256
