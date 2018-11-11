@@ -18,9 +18,7 @@ class Game:
         StartScreen(self.getGameWindow())
         p1 = Apple()
         p2 = Apple()
-        while(True):
-            GameScreen(self.getGameWindow(),p1,p2)
-            break
+        GameScreen(self.getGameWindow(),p1,p2)
 
 
 import threading
