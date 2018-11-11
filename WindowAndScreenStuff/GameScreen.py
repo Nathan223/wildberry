@@ -41,10 +41,12 @@ class GameScreen:
         self.countDown.setText("")
 
     def loadP1(self, window):
-        p1Point = Point(self.stage.getPos1().getX(),self.stage.getPos1().getY()+100)
+        p1Point = Point(self.stage.getPos1().getX(),self.stage.getPos1().getY()-(89+6))
         p1Pic = Image(p1Point,self.p1.getImage())
         p1Pic.draw(window)
 
     def loadP2(self, window):
-        pass
+        p1Point = Point(self.stage.getPos2().getX(), self.stage.getPos2().getY() - (89 + 6))
+        p1Pic = Image(p1Point, self.p2.getImage())
+        p1Pic.draw(window)
 
