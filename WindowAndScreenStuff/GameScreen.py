@@ -46,6 +46,8 @@ class GameScreen:
     def createHealthBars(self, window):
         self.p1Text = Text(Point(50,50), str(self.p1.health))
         self.p2Text = Text(Point(1100, 50), str(self.p2.health))
+        self.p1Text.setTextColor("White")
+        self.p2Text.setTextColor("White")
         self.p1Text.setSize(36)
         self.p2Text.setSize(36)
         self.p1Text.draw(window)
