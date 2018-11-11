@@ -175,49 +175,49 @@ class hitbox: # Obj, width, height, weight, pos, ignored
         return self.hitbox
 
 # Example documentation
-def main():
-    window = GraphWin("Jump test", 640, 480)
-    window.setBackground("white")
-
-    # This is just the objects
-    plyJumpRender = Image(Point(50, 50), "Cherry.png")
-    plyJumpRender.draw(window)
-
-    plyJumpRender2 = Image(Point(50, 50), "Cherry.png")
-    plyJumpRender2.draw(window)
-    plyJumpRender2.move(150, 0)
-
-    worldRenderer = Image(Point(500, 3), "platform.png")
-    worldRenderer.draw(window)
-    worldRenderer.move(-200, 400)
-
-    # Hitbox defines as
-    # Obj, width, height, weight, pos, ignored
-    plyJump = hitbox(plyJumpRender, 1)
-    plyJump2 = hitbox(plyJumpRender2, 1)
-    platform = hitbox(worldRenderer, 0)
-
-    while True:
-        # Controls
-        controls = window.checkKeys()
-        if "w" in controls and plyJump.inAir == False:
-            plyJump.addYForce(20)
-        if "a" in controls:
-            plyJump.addXForce(5)
-        if "d" in controls:
-            plyJump.addXForce(-5)
-        if "Up" in controls and plyJump2.inAir == False:
-            plyJump2.addYForce(20)
-        if "Left" in controls:
-            plyJump2.addXForce(5)
-        if "Right" in controls:
-            plyJump2.addXForce(-5)
-
-        # Physics calculations
-        plyJump.calculate() # Needed to actual update the position of the hitbox
-        plyJump2.calculate()
-        platform.calculate()
-
-        sleep(0.0083) # Magic sleep number from jamie
-
-main()
+# def main():
+#     window = GraphWin("Jump test", 640, 480)
+#     window.setBackground("white")
+#
+#     # This is just the objects
+#     plyJumpRender = Image(Point(50, 50), "Cherry.png")
+#     plyJumpRender.draw(window)
+#
+#     plyJumpRender2 = Image(Point(50, 50), "Cherry.png")
+#     plyJumpRender2.draw(window)
+#     plyJumpRender2.move(150, 0)
+#
+#     worldRenderer = Image(Point(500, 3), "platform.png")
+#     worldRenderer.draw(window)
+#     worldRenderer.move(-200, 400)
+#
+#     # Hitbox defines as
+#     # Obj, width, height, weight, pos, ignored
+#     plyJump = hitbox(plyJumpRender, 1)
+#     plyJump2 = hitbox(plyJumpRender2, 1)
+#     platform = hitbox(worldRenderer, 0)
+#
+#     while True:
+#         # Controls
+#         controls = window.checkKeys()
+#         if "w" in controls and plyJump.inAir == False:
+#             plyJump.addYForce(20)
+#         if "a" in controls:
+#             plyJump.addXForce(5)
+#         if "d" in controls:
+#             plyJump.addXForce(-5)
+#         if "Up" in controls and plyJump2.inAir == False:
+#             plyJump2.addYForce(20)
+#         if "Left" in controls:
+#             plyJump2.addXForce(5)
+#         if "Right" in controls:
+#             plyJump2.addXForce(-5)
+#
+#         # Physics calculations
+#         plyJump.calculate() # Needed to actual update the position of the hitbox
+#         plyJump2.calculate()
+#         platform.calculate()
+#
+#         sleep(0.0083) # Magic sleep number from jamie
+#
+# main()
