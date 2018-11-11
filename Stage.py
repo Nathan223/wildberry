@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 from updatedGraphics import Image,Point,Rectangle
 from hitbox import *
+=======
+from graphics import Image,Point,Rectangle
+from physics2 import *
+>>>>>>> 13ed99ed920ab3da6a413ea8e05d33eba7388674
 
 class Stage(object):
     def __init__(self, window):
