@@ -12,18 +12,18 @@ hitboxes = [] # Contains all the seperate hitboxes for each hitbox
 # this function should be kept, it sets the position
 # instead of moving it
 def setPos(obj, x, y):
-    currentX = obj.getCenter().getX()
-    currentY = obj.getCenter().getY()
+    currentX = obj.getAnchor().getX()
+    currentY = obj.getAnchor().getY()
     obj.move(x - currentX, y - currentY)
 
 # Hitbox class
 class hitbox: # Obj, width, height, weight, pos, ignored
-    def __init__(self, obj, width, height, weight, pos):
+    def __init__(self, obj, weight):
         global hitboxes # Makes the hitboxes global variable accessable
         self.velocity = [0, 0] # X, Y, This is how much to move left and right, can be manipulated using methods
-        self.position = [pos.getX(), pos.getY()] # X, Y, The position of the object, you set the image to this
-        self.width = width # This is the width of the hitbox
-        self.height = height # This is the height of the hitbox
+        self.position = [obj.getAnchor().getX(), obj.getAnchor().getY()] # X, Y, The position of the object, you set the image to this
+        self.width = obj.getWidth()/1.1 # This is the width of the hitbox
+        self.height = obj.getHeight()/2 # This is the height of the hitbox
         self.weight = weight # This is the weight of the hitbox, if its 1 its affected normally, 0 no gravity, 2 double physics
         self.hitbox = [self.position[0] - self.width / 2, self.position[0] + self.width / 2,
                         self.position[1] + self.height, self.position[1] - self.height] # Defines the hitbox as in Left, Right, Up, Down
@@ -40,6 +40,8 @@ class hitbox: # Obj, width, height, weight, pos, ignored
         self.collidedRight = False
         self.collidedUp = False
         self.collidedDown = False
+        self.playerCollidedLeft = False
+        self.playerCollidedRight = False
 
         self.projectedX = 0
         self.projectedY = 0
@@ -58,6 +60,8 @@ class hitbox: # Obj, width, height, weight, pos, ignored
         self.collidedRight = False # If the hitbox was collided at the right
         self.collidedUp = False # If the hitbox was collided at the top
         self.collidedDown = False # If the hitbox was collided at the bottom
+        self.playerCollidedLeft = False
+        self.playerCollidedRight = False
 
         self.projectedX = self.position[0] + self.velocity[0] # Where the hitbox should be
         self.projectedY = self.position[1] - ((gravity * self.weight) + self.velocity[1]) # Where the hitbox should be
@@ -79,6 +83,18 @@ class hitbox: # Obj, width, height, weight, pos, ignored
                     self.collidedUp = True
                 if self.projectedY + self.height > box[3]:
                     self.collidedDown = True
+            if i == 1 and self.hitboxID == 0:
+                # X calculations
+                if self.projectedX + self.width > box[0]:
+                    self.playerCollidedLeft = True
+                if self.projectedX - self.width < box[1]:
+                    self.playerCollidedRight = True
+            if i == 0 and self.hitboxID == 1:
+                # X calculations
+                if self.projectedX + self.width > box[0]:
+                    self.playerCollidedLeft = True
+                if self.projectedX - self.width < box[1]:
+                    self.playerCollidedRight = True
 
             i += 1
 
@@ -99,20 +115,22 @@ class hitbox: # Obj, width, height, weight, pos, ignored
         else:
             self.fallingVel = 0 # Set to zero if its weightless (dont move it)
 
-
-        print(self.fallingVel)
         # Only move if possible
-        if (self.collidedLeft == False or self.collidedRight == False) or (self.collidedUp == False or self.collidedDown == False):
+        if self.playerCollidedLeft == False or self.playerCollidedRight == False:
             self.position[0] -= self.velocity[0] # Move the objects actual position
+        else:
+            self.velocity[0] = 0
+
+        if (self.collidedLeft == False or self.collidedRight == False) or (self.collidedUp == False or self.collidedDown == False):
             self.position[1] -= self.fallingVel # Make it fall based on the falling velocity
         else:
             self.velocity[1] = 0
 
         # Lets the player move back if its still collided
         # X
-        if self.velocity[0] > 0 and self.collidedLeft == True:
+        if self.velocity[0] > 0 and self.playerCollidedLeft == True:
             self.position[0] -= self.velocity[0]
-        if self.velocity[0] < 0 and self.collidedRight == True:
+        if self.velocity[0] < 0 and self.playerCollidedRight == True:
             self.position[0] -= self.velocity[0]
         # Y
         if self.velocity[1] > 0 and self.collidedDown == True:
@@ -121,6 +139,7 @@ class hitbox: # Obj, width, height, weight, pos, ignored
             self.position[1] -= self.fallingVel
 
         # Slow down the velocity at every physics calculation
+        print(self.velocity)
         if self.velocity[0] > 0:
             self.velocity[0] -= objResistance
         else:
@@ -161,23 +180,22 @@ def main():
     window.setBackground("white")
 
     # This is just the objects
-    plyJumpRender = Rectangle(Point(0, 0), Point(50, 50))
-    plyJumpRender.setFill("black")
+    plyJumpRender = Image(Point(50, 50), "Cherry.png")
     plyJumpRender.draw(window)
 
-    plyJumpRender2 = Rectangle(Point(0, 0), Point(50, 50))
-    plyJumpRender2.setFill("black")
+    plyJumpRender2 = Image(Point(50, 50), "Cherry.png")
     plyJumpRender2.draw(window)
+    plyJumpRender2.move(150, 0)
 
-    worldRenderer = Rectangle(Point(0, 0), Point(500, 3))
-    worldRenderer.setFill("red")
+    worldRenderer = Image(Point(500, 3), "platform.png")
     worldRenderer.draw(window)
+    worldRenderer.move(-200, 400)
 
     # Hitbox defines as
     # Obj, width, height, weight, pos, ignored
-    plyJump = hitbox(plyJumpRender, 25, 25, 1, Point(340, 90))
-    plyJump2 = hitbox(plyJumpRender2, 25, 25, 1, Point(220, 5))
-    platform = hitbox(worldRenderer, 500, 1.5, 0, Point(640/2, 480/1.2))
+    plyJump = hitbox(plyJumpRender, 1)
+    plyJump2 = hitbox(plyJumpRender2, 1)
+    platform = hitbox(worldRenderer, 0)
 
     while True:
         # Controls
