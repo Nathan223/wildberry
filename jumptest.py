@@ -1,4 +1,4 @@
-from updatedGraphics import *
+from graphics import *
 
 gravity = -10
 
