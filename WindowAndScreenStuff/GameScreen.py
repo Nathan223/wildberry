@@ -77,7 +77,7 @@ class GameScreen:
         if "d" in controls:
             self.plyJump.addXForce(-5)
         if "e" in controls and abs(self.plyJump.position[0] - self.plyJump2.position[0]) < 120 and abs(
-                self.plyJump.position[1] - self.plyJump2.position[1]) < 120 and time.time() - self.time1 > .5:
+                self.plyJump.position[1] - self.plyJump2.position[1]) < 120 and time.time() - self.time1 > 1:
             self.p2.health -= 5
             self.p2Text.setText(str(self.p2.health))
             self.time1 = time.time()
