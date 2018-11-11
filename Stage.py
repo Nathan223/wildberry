@@ -1,4 +1,5 @@
-
+import random as rm
+# rm.randint(1,10)
 class Stage:
 
     def plainStage(self):
