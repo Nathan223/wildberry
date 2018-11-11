@@ -1,19 +1,23 @@
 from Stage import Stage
 from graphics import Text,Image,Point
+from Characters.Player import *
 from physics2 import hitbox
 import time
 
 
+
 class GameScreen:
     def __init__(self, window, player1, player2):
-        self.p1 = player1
-        self.p2 = player2
         self.stage = Stage(window)
         Stage.regStage(self.stage, window)
+        self.p1 = Player(player1, None)
+        self.p2 = Player(player2, None)
         self.p1Point = Point(self.stage.getPos1().getX(), self.stage.getPos1().getY() - (89 + 6))
         self.p2Point = Point(self.stage.getPos2().getX(), self.stage.getPos2().getY() - (89 + 6))
-        self.p1Pic = Image(self.p1Point,self.p1.getImage())
-        self.p2Pic = Image(self.p2Point,self.p2.getImage())
+        self.p1Pic = Image(self.p1Point,player1.getFruit.getImageFile())
+        self.p2Pic = Image(self.p2Point,player2.getFruit.getImageFile())
+        self.p1.setImage(self.p1Pic)
+        self.p2.setImage(self.p2Pic)
         #Stage.createStage()
         self.createHealthBars(window)
         self.startGame(window)

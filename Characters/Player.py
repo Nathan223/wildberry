@@ -2,31 +2,24 @@ from Characters.Apple import Apple
 from hitbox import hitbox
 
 class Player(object):
-    def __init__(self):
+    def __init__(self,fruit,image):
         self.lives = 3
-        self.fruit = Apple()
-        self.hitbox = hitbox(self.fruit.image, 1)
+        if(fruit == "Apple"):
+            self.fruit = Apple(image)
 
+    def getFruit(self):
+        return self.fruit
 
+    def setImage(self,img):
+        self.image = img
+        setFruit(self.image)
+
+    def setFruit(self,img):
+        if type(self.fruit) is Apple:
+            self.fruit = Apple(img)
 
 # this function should be kept, it sets the position
 # instead of moving it
-    def setPos(self, x, y):
-        currentX = self.getCenter().getX()
-        currentY = self.getCenter().getY()
-        self.move(x - currentX, y - currentY)
-
-    def jump(self):
-        self.addYForce(self.fruit.mvtSpeed * 4)
-
-    def slam(self):
-        self.addYForce(self.fruit.mvtSpeed * -3)
-
-    def right(self):
-        self.addXForce(self.fruit.mvtSpeed)
-
-    def left(self):
-        self.addXForce(self.fruit.mvtSpeed * -1)
 
 
     #

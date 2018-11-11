@@ -4,9 +4,9 @@ from hitbox import hitbox
 
 
 class Apple(Fruit):
-    def __init__(self):
-        Fruit.__init__(self)
-        self.image = "ImagesAndSprites/Apple.gif"
+    def __init__(self, image):
+        Fruit.__init__(self, image)
+        self.imageFile= "ImagesAndSprites/Apple.gif"
         self.mvtSpeed = 5
 
 
@@ -22,5 +22,5 @@ class Apple(Fruit):
     def ultimate(self):
         pass
 
-    def getImage(self):
-        return self.image
+    def getImageFile(self):
+        return self.imageFile

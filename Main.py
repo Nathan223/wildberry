@@ -17,8 +17,8 @@ class Game:
 
     def run(self):
         StartScreen(self.getGameWindow())
-        p1 = Apple()
-        p2 = Apple()
+        p1 = "Apple"
+        p2 = "Apple"
         GameScreen(self.getGameWindow(),p1,p2)
 
 class MusicPlayer(threading.Thread):
