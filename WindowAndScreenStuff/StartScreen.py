@@ -3,7 +3,7 @@ from updatedGraphics import Image, Text, Point, color_rgb
 
 class StartScreen:
     def __init__(self,window):
-        self.image = Image(Point(600,400),"ImagesAndSprites/StartScreen.gif")
+        self.image = Image(Point(600,400),"ImagesAndSprites/MenuScreen.gif")
         self.text = Text(Point(600,600),"Press Any Key To Start")
         self.text.setFace("arial")
         self.text.setSize(36)

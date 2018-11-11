@@ -26,6 +26,7 @@ class GameScreen:
 
         self.countDown.setTextColor("White")
         self.countDown.setSize(20)
+        self.countDown.setText("3")
         self.countDown.draw(window)
         self.countDown.setSize(36)
         for i in range(3, 0, -1):
