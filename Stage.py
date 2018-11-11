@@ -1,5 +1,5 @@
 from updatedGraphics import Image,Point,Rectangle
-from physics2 import *
+from hitbox import *
 
 class Stage(object):
     def __init__(self, window):

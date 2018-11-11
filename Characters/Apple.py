@@ -1,12 +1,13 @@
 from Characters.Fruit import Fruit
 from graphics import Point
-from physics2 import hitbox
+from hitbox import hitbox
 
 
 class Apple(Fruit):
     def __init__(self):
         Fruit.__init__(self)
         self.image = "ImagesAndSprites/Apple.gif"
+        self.mvtSpeed = 5
 
 
     def quickAttack(self):

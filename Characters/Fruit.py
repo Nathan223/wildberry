@@ -10,8 +10,7 @@ class Fruit(object):
         self.xVelocity = 0
         self.yVelocity = 0
         self.image = None
-        self.hitbox = None
-
+        self.mvtSpeed = 0
 
     def quickAttack(self):
         pass
