@@ -19,7 +19,6 @@ class GameScreen:
         while True:
             if self.checkExit(window.checkKey()):
                 window.close()
-            self.update()
 
             # This is just the objects
             plyJumpRender = Image(Point(300, 50), "ImagesAndSprites/Apple.gif")
@@ -48,12 +47,18 @@ class GameScreen:
                     plyJump.addXForce(5)
                 if "d" in controls:
                     plyJump.addXForce(-5)
+                if "e" in controls: #and abs(plyJump.position[0] - plyJump2.position[0]) < 50 and abs(plyJump.position[1] - plyJump2.position[1]) < 50 :
+                   self.p2.health -= 5
+                   self.p2Text.setText(str(self.p2.health))
                 if "Up" in controls and plyJump2.inAir == False:
                     plyJump2.addYForce(20)
                 if "Left" in controls:
                     plyJump2.addXForce(5)
                 if "Right" in controls:
                     plyJump2.addXForce(-5)
+                if "Insert" in controls: #and abs(plyJump.position[0] - plyJump2.position[0]) < 50 and abs(plyJump.position[1] - plyJump2.position[1]) < 50 :
+                    self.p1.health -= 5
+                    self.p1Text.setText(str(self.p1.health))
 
                 # Physics calculations
                 plyJump.calculate()  # Needed to actual update the position of the hitbox
@@ -70,9 +75,7 @@ class GameScreen:
     def checkLose(self):
         pass
 
-    def update(self):
-        self.p1Text.setText(str(self.p1.health))
-        self.p2Text.setText(str(self.p2.health))
+
 
     def createHealthBars(self, window):
         self.p1Text = Text(Point(50,50), str(self.p1.health))
