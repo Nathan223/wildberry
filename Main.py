@@ -1,5 +1,5 @@
-from ImageGetter import getImage
-from Window import Window
+from WindowAndScreenStuff.ImageGetter import getImage
+from WindowAndScreenStuff.Window import Window
 from updatedGraphics import Image, Point, Text, color_rgb
 
 GAME_TITLE = "Wildberry"
