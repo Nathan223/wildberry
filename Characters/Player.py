@@ -4,6 +4,7 @@ from hitbox import hitbox
 class Player(object):
     def __init__(self,fruit,image):
         self.lives = 3
+        self.health = 100
         if(fruit == "Apple"):
             self.fruit = Apple(image)
 
@@ -12,7 +13,7 @@ class Player(object):
 
     def setImage(self,img):
         self.image = img
-        setFruit(self.image)
+        self.setFruit(self.image)
 
     def setFruit(self,img):
         if type(self.fruit) is Apple:
