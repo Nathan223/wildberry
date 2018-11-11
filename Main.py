@@ -3,6 +3,7 @@ from WindowAndScreenStuff.StartScreen import StartScreen
 from WindowAndScreenStuff.GameScreen import GameScreen
 from Characters.Apple import Apple
 import threading
+from WindowAndScreenStuff import p1wins, p2wins
 
 GAME_TITLE = "Wildberry"
 WIDTH = 1200
@@ -19,7 +20,13 @@ class Game:
         StartScreen(self.getGameWindow())
         p1 = "Apple"
         p2 = "Apple"
-        GameScreen(self.getGameWindow(),p1,p2)
+        g =GameScreen(self.getGameWindow(),p1,p2)
+        #if(g.getWinner() == 1):
+         #   p1wins(self.getGameWindow())
+       # else:
+          #  p2wins(self.getGameWindow())
+
+
 
 class MusicPlayer(threading.Thread):
 
