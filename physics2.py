@@ -46,6 +46,8 @@ class hitbox: # Obj, width, height, weight, pos, ignored
         self.projectedX = 0
         self.projectedY = 0
 
+        self.leftfruit = 0
+
     def calculate(self):
         global gravity # Gets the gravity from the global constant
         global objResistance # Gets the object resistance
@@ -84,12 +86,14 @@ class hitbox: # Obj, width, height, weight, pos, ignored
                 if self.projectedY + self.height > box[3]:
                     self.collidedDown = True
             if i == 1 and self.hitboxID == 0:
+                self.leftfruit = 1
                 # X calculations
                 if self.projectedX + self.width > box[0]:
                     self.playerCollidedLeft = True
                 if self.projectedX - self.width < box[1]:
                     self.playerCollidedRight = True
             if i == 0 and self.hitboxID == 1:
+                self.leftfruit = -1
                 # X calculations
                 if self.projectedX + self.width > box[0]:
                     self.playerCollidedLeft = True
@@ -119,7 +123,7 @@ class hitbox: # Obj, width, height, weight, pos, ignored
         if self.playerCollidedLeft == False or self.playerCollidedRight == False:
             self.position[0] -= self.velocity[0] # Move the objects actual position
         else:
-            self.velocity[0] = 0
+            self.position[0] -= self.leftfruit * 5
 
         if (self.collidedLeft == False or self.collidedRight == False) or (self.collidedUp == False or self.collidedDown == False):
             self.position[1] -= self.fallingVel # Make it fall based on the falling velocity
@@ -175,49 +179,49 @@ class hitbox: # Obj, width, height, weight, pos, ignored
         return self.hitbox
 
 # Example documentation
-# def main():
-#     window = GraphWin("Jump test", 640, 480)
-#     window.setBackground("white")
-#
-#     # This is just the objects
-#     plyJumpRender = Image(Point(50, 50), "Cherry.png")
-#     plyJumpRender.draw(window)
-#
-#     plyJumpRender2 = Image(Point(50, 50), "Cherry.png")
-#     plyJumpRender2.draw(window)
-#     plyJumpRender2.move(150, 0)
-#
-#     worldRenderer = Image(Point(500, 3), "platform.png")
-#     worldRenderer.draw(window)
-#     worldRenderer.move(-200, 400)
-#
-#     # Hitbox defines as
-#     # Obj, width, height, weight, pos, ignored
-#     plyJump = hitbox(plyJumpRender, 1)
-#     plyJump2 = hitbox(plyJumpRender2, 1)
-#     platform = hitbox(worldRenderer, 0)
-#
-#     while True:
-#         # Controls
-#         controls = window.checkKeys()
-#         if "w" in controls and plyJump.inAir == False:
-#             plyJump.addYForce(20)
-#         if "a" in controls:
-#             plyJump.addXForce(5)
-#         if "d" in controls:
-#             plyJump.addXForce(-5)
-#         if "Up" in controls and plyJump2.inAir == False:
-#             plyJump2.addYForce(20)
-#         if "Left" in controls:
-#             plyJump2.addXForce(5)
-#         if "Right" in controls:
-#             plyJump2.addXForce(-5)
-#
-#         # Physics calculations
-#         plyJump.calculate() # Needed to actual update the position of the hitbox
-#         plyJump2.calculate()
-#         platform.calculate()
-#
-#         sleep(0.0083) # Magic sleep number from jamie
-#
-# main()
+def main():
+    window = GraphWin("Jump test", 640, 480)
+    window.setBackground("white")
+
+    # This is just the objects
+    plyJumpRender = Image(Point(50, 50), "Cherry.png")
+    plyJumpRender.draw(window)
+
+    plyJumpRender2 = Image(Point(50, 50), "Cherry.png")
+    plyJumpRender2.draw(window)
+    plyJumpRender2.move(150, 0)
+
+    worldRenderer = Image(Point(500, 3), "platform.png")
+    worldRenderer.draw(window)
+    worldRenderer.move(-200, 400)
+
+    # Hitbox defines as
+    # Obj, width, height, weight, pos, ignored
+    plyJump = hitbox(plyJumpRender, 1)
+    plyJump2 = hitbox(plyJumpRender2, 1)
+    platform = hitbox(worldRenderer, 0)
+
+    while True:
+        # Controls
+        controls = window.checkKeys()
+        if "w" in controls and plyJump.inAir == False:
+            plyJump.addYForce(20)
+        if "a" in controls:
+            plyJump.addXForce(5)
+        if "d" in controls:
+            plyJump.addXForce(-5)
+        if "Up" in controls and plyJump2.inAir == False:
+            plyJump2.addYForce(20)
+        if "Left" in controls:
+            plyJump2.addXForce(5)
+        if "Right" in controls:
+            plyJump2.addXForce(-5)
+
+        # Physics calculations
+        plyJump.calculate() # Needed to actual update the position of the hitbox
+        plyJump2.calculate()
+        platform.calculate()
+
+        sleep(0.0083) # Magic sleep number from jamie
+
+main()
