@@ -1,4 +1,4 @@
-from hitbox import hitbox
+from physics2 import hitbox
 from graphics import Point, Image
 
 
@@ -12,8 +12,9 @@ class Fruit(object):
         self.xVelocity = 0
         self.yVelocity = 0
         self.image = img
-        self.hb = hitbox(self.image,1)
+        self.hb = None
         self.mvtSpeed = None
+        self.imageFile = None
 
     def setPos(self, x, y):
         currentX = self.getCenter().getX()
@@ -46,3 +47,9 @@ class Fruit(object):
 
     def getImage(self):
         return self.image
+
+    def setHB(self):
+        self.hb = (self.image,1)
+
+    def getImageFile(self):
+        return self.imageFile

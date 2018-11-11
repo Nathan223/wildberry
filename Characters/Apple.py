@@ -1,6 +1,6 @@
 from Characters.Fruit import Fruit
 from graphics import Point
-from hitbox import hitbox
+from physics2 import hitbox
 
 
 class Apple(Fruit):
