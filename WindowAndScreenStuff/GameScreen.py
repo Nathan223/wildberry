@@ -19,5 +19,4 @@ class GameScreen:
         pass
 
     def countDown(self,window):
-        self.countDown = Text(Point(window.getWidth()/2),Point(window.getHeight()/2))
-        self.countDown = 
+        pass
