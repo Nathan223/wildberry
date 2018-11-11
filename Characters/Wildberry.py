@@ -1,4 +1,4 @@
-from Fruit import Fruit
+from Characters.Fruit import Fruit
 
 
 class Wildberry(Fruit):
