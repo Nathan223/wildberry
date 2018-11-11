@@ -18,13 +18,23 @@ class Game:
         StartScreen(self.getGameWindow())
         while(True):
             GameScreen(self.getGameWindow())
+            break
 
 
+import threading
 
 
+class MusicPlayer(threading.Thread):
 
+    def __init__(self):
+        threading.Thread.__init__(self)
+
+    def run(self):
+        exec(open("Music.py").read())
 
 
 if __name__ == "__main__":
+    m = MusicPlayer()
     game = Game()
+    m.start()
     game.run()
