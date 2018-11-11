@@ -19,4 +19,4 @@ class Apple(Fruit):
         pass
 
     def getImage(self):
-        return self.imagea
+        return self.image
