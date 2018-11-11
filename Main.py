@@ -11,13 +11,19 @@ class Game:
     def __init__(self):
         self._wildberryWindow = Window(GAME_TITLE,WIDTH,HEIGHT)
 
-    def run(self):
-        startScreen = StartScreen(self.getGameWindow())
-        self.getGameWindow().getKey()
-
-
     def getGameWindow(self):
         return self._wildberryWindow.getWindow()
+
+    def run(self):
+        StartScreen(self.getGameWindow())
+        while(True):
+            break
+
+
+
+
+
+
 
 if __name__ == "__main__":
     game = Game()
