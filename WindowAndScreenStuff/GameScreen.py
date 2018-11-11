@@ -40,10 +40,16 @@ class GameScreen:
         pass
 
     def update(self):
-        pass
+        self.p1Text.setText(str(self.p1.health))
+        self.p2Text.setText(str(self.p2.health))
 
     def createHealthBars(self, window):
-        pass
+        self.p1Text = Text(Point(50,50), str(self.p1.health))
+        self.p2Text = Text(Point(1100, 50), str(self.p2.health))
+        self.p1Text.setSize(36)
+        self.p2Text.setSize(36)
+        self.p1Text.draw(window)
+        self.p2Text.draw(window)
 
     def startGame(self, window):
         pass
@@ -63,7 +69,7 @@ class GameScreen:
             if i==1:
                 self.p2Pic.draw(window)
             time.sleep(1)
-        self.countDown.setText("Fight")
+        self.countDown.setText("Fight!")
         self.countDown.setSize(36)
         time.sleep(1)
         self.countDown.setText("")
