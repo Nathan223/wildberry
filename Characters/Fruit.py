@@ -6,7 +6,7 @@ INITIAL_JUMP_SPEED = 10
 
 class Fruit(object):
     def __init__(self, img):
-        self.HP = 0
+        self.maxHP = 0
         self.xPos = 0
         self.yPos = 0
         self.xVelocity = 0

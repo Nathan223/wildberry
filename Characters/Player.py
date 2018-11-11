@@ -2,25 +2,21 @@ from Characters.Apple import Apple
 from physics2 import hitbox
 
 class Player(object):
-    def __init__(self,fruit,image):
+    def __init__(self,fruit, id):
         self.lives = 3
-        self.health = 100
-        if(fruit == "Apple"):
-            self.fruit = Apple(image)
-            self.imageFile = "ImagesAndSprites/Apple.gif"
-        else:
-            self.fruit = None
-            self.imageFile = None
+        self.currentHP = 100
+        self.id = id
+        self.fruit = fruit
 
     def getFruit(self):
         return self.fruit
 
-    def setImage(self,img):
-        self.image = img
+    #def setImage(self,img):
+       # self.image = img
 
 
-    def getImageFile(self):
-        return self.imageFile
+   # def getImageFile(self):
+       # return self.imageFile
 
 # this function should be kept, it sets the position
 # instead of moving it
