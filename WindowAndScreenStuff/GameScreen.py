@@ -1,5 +1,5 @@
 from Stage import Stage
-
+from updatedGraphics import *
 
 class GameScreen:
     def __init__(self,window):
@@ -8,6 +8,7 @@ class GameScreen:
         Stage.regStage(stage,window)
         self.createHealthBars(window)
         self.startGame(window)
+        self.countDown(window)
         while(True):
             pass
 
@@ -16,3 +17,7 @@ class GameScreen:
 
     def startGame(self,window):
         pass
+
+    def countDown(self,window):
+        self.countDown = Text(Point(window.getWidth()/2),Point(window.getHeight()/2))
+        self.countDown = 
