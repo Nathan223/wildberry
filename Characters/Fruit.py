@@ -1,4 +1,9 @@
-class Fruit:
+from physics import hitbox
+from updatedGraphics import Point
+from updatedGraphics import Image
+
+
+class Fruit(object):
     def __init__(self):
         self.HP = 0
         self.xPos = 0
@@ -6,6 +11,7 @@ class Fruit:
         self.xVelocity = 0
         self.yVelocity = 0
         self.image = None
+        self.hitbox = None
 
 
     def quickAttack(self):
@@ -19,3 +25,6 @@ class Fruit:
 
     def ultimate(self):
         pass
+
+    def getImage(self):
+        return self.image

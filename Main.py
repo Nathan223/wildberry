@@ -6,7 +6,6 @@ GAME_TITLE = "Wildberry"
 WIDTH = 1200
 HEIGHT = 800
 
-
 class Game:
     def __init__(self):
         self._wildberryWindow = Window(GAME_TITLE,WIDTH,HEIGHT)
@@ -35,6 +34,6 @@ class MusicPlayer(threading.Thread):
 
 if __name__ == "__main__":
     m = MusicPlayer()
-    game = Game()
     m.start()
+    game = Game()
     game.run()
