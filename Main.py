@@ -4,7 +4,7 @@ from WindowAndScreenStuff.GameScreen import GameScreen
 from Characters.Apple import Apple
 import threading
 
-GAME_TITLE = "Wildberry"
+GAME_TITLE = "wildberry"
 WIDTH = 1200
 HEIGHT = 800
 
