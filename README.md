@@ -6,7 +6,7 @@ How to get the game to work:
 
 2) Extract the zip folder to a location you can remember
 
-***THIS STEP IS IMPORTANT***
+***THIS STEP IS IMPORTANT:***
 
 3) Open your favorite python IDE and File->Open the folder ***inside*** the extracted folder 
 
